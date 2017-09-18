@@ -576,6 +576,8 @@ In this latest version of the FTC SDK (20150803_001) the following changes shoul
  * The API for the Legacy Module and Core Device Interface Module have been updated.
    - Support for encoders with the Legacy Module is now working.
  * The hardware loop has been updated for better performance.
+ 
+ -collin
 
 
 T. Eng
