@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="TeleOp Alpha Mk.1", group="TeleOp")
+@TeleOp(name="TeleOp Alpha 1.0", group="TeleOp")
 public abstract class ATeamTeleOp extends LinearOpMode {
     
     public ElapsedTime runtime = new ElapsedTime();
