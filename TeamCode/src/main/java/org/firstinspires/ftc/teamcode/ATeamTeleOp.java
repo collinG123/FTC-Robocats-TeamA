@@ -38,17 +38,20 @@ public abstract class ATeamTeleOp extends LinearOpMode {
         telemetry.addLine("Initialization Complete");
         telemetry.update();
 
-        double leftDrivePower = .5;
-        double rightDrivePower = .5;
+        waitForStart();
+        telemetry.clearAll();
+        runtime.reset();
 
-        leftDrivePower  = -gamepad1.left_stick_y;
-        rightDrivePower = -gamepad1.right_stick_y;
+        while (opModeIsActive()) {
 
-        leftDrive1.setPower(leftDrivePower);
-        rightDrive1.setPower(rightDrivePower);
+            rightDrive1.setPower(gamepad1.right_stick_y);
+            rightDrive2.setPower(gamepad1.right_stick_y);
+            leftDrive1.setPower(gamepad1.left_stick_y);
+            leftDrive2.setPower(gamepad1.left_stick_y);
 
-        // Show the elapsed game time and wheel power.
-        telemetry.addData("Status", "Run Time: " + runtime.toString());
-        telemetry.addData("Motors", "left (%.2f), right (%.2f)", leftDrivePower, rightDrivePower);
+            telemetry.addData("Status", "Run Time: " + runtime.toString());
+            telemetry.addData("Motors", "left (%.2f), right (%.2f)", gamepad1.left_stick_y, gamepad1.right_stick_y);
+            telemetry.update();
+        }
     }
 }
