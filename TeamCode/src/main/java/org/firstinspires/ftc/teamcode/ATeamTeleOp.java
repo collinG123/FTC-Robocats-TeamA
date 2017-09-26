@@ -44,10 +44,21 @@ public abstract class ATeamTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            rightDrive1.setPower(gamepad1.right_stick_y);
-            rightDrive2.setPower(gamepad1.right_stick_y);
-            leftDrive1.setPower(gamepad1.left_stick_y);
-            leftDrive2.setPower(gamepad1.left_stick_y);
+            rightDrive1.setPower(-gamepad1.right_stick_y);
+            rightDrive2.setPower(-gamepad1.right_stick_y);
+            leftDrive1.setPower(-gamepad1.left_stick_y);
+            leftDrive2.setPower(-gamepad1.left_stick_y);
+
+            /*
+            Close grippers onto glyph.
+            Lift up glyph.
+            Place glyph on top of another glyph.
+            Open and lower gripper.
+            Close and grip both glyphs.
+            Lift both glyphs.
+            Drive to CryptoBox.
+            Open gripper and drop off glyphs into CryptoBox.
+            */
 
             telemetry.addData("Status", "Run Time: " + runtime.toString());
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", gamepad1.left_stick_y, gamepad1.right_stick_y);
