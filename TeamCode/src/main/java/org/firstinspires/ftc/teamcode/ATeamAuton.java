@@ -29,6 +29,11 @@ public abstract class ATeamAuton extends LinearOpMode {
     @Override
     public void runOpMode() {
 
+        leftDrive1  = hardwareMap.get(DcMotor.class, "leftDrive1");
+        rightDrive1 = hardwareMap.get(DcMotor.class, "rightDrive1");
+        leftDrive2  = hardwareMap.get(DcMotor.class, "leftDrive2");
+        rightDrive2 = hardwareMap.get(DcMotor.class, "rightDrive2");
+
         leftDrive1.setDirection(DcMotor.Direction.FORWARD);
         rightDrive1.setDirection(DcMotor.Direction.FORWARD);
         leftDrive2.setDirection(DcMotor.Direction.FORWARD);
