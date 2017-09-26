@@ -30,7 +30,7 @@ public abstract class ATeamAuton extends LinearOpMode {
     public void runOpMode() {
 
         leftDrive1.setDirection(DcMotor.Direction.FORWARD);
-        rightDrive1.setDirection(DcMotor.Direction.REVERSE);
+        rightDrive1.setDirection(DcMotor.Direction.FORWARD);
         leftDrive2.setDirection(DcMotor.Direction.FORWARD);
         rightDrive2.setDirection(DcMotor.Direction.REVERSE);
 
