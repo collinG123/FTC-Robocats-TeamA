@@ -12,6 +12,8 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous (name= "Auton Alpha 1.0", group= "Autonomous")
 public abstract class ATeamAuton extends LinearOpMode {
 
+
+
     public static final double COUNTS_PER_MOTOR_REV = 1220;
     public static final double DRIVE_GEAR_REDUCTION = 1.0;
     public static final double WHEEL_DIAMETER_INCHES = 4.0;
@@ -24,7 +26,6 @@ public abstract class ATeamAuton extends LinearOpMode {
     public DcMotor leftDrive2 = null;
     public DcMotor rightDrive1 = null;
     public DcMotor rightDrive2 = null;
-
 
     @Override
     public void runOpMode() {
