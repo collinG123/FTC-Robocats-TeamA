@@ -21,7 +21,7 @@ public abstract class ATeamTeleOp extends LinearOpMode {
     public DcMotor rightDrive2 = null;
 
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         telemetry.addLine("Initializing");
         telemetry.update();
         
@@ -41,6 +41,9 @@ public abstract class ATeamTeleOp extends LinearOpMode {
         waitForStart();
         telemetry.clearAll();
         runtime.reset();
+
+        telemetry.addLine("Started");
+        telemetry.update();
 
         while (opModeIsActive()) {
 
