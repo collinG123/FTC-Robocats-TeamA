@@ -24,20 +24,21 @@ public abstract class ATeamTeleOp extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         telemetry.addLine("Initializing");
         telemetry.update();
-        
-        leftDrive1  = hardwareMap.get(DcMotor.class, "leftDrive1");
-        rightDrive1 = hardwareMap.get(DcMotor.class, "rightDrive1");
-        leftDrive2  = hardwareMap.get(DcMotor.class, "leftDrive2");
-        rightDrive2 = hardwareMap.get(DcMotor.class, "rightDrive2");
-        
-        leftDrive1.setDirection(DcMotor.Direction.FORWARD);
-        rightDrive1.setDirection(DcMotor.Direction.FORWARD);
-        leftDrive2.setDirection(DcMotor.Direction.REVERSE);
-        rightDrive2.setDirection(DcMotor.Direction.REVERSE);
+
+        leftDrive1 = hardwareMap.dcMotor.get("leftDrive1");
+        rightDrive1 = hardwareMap.dcMotor.get("rightDrive1");
+        leftDrive2 = hardwareMap.dcMotor.get("leftDrive2");
+        rightDrive2 = hardwareMap.dcMotor.get("rightDrive2");
+
+        leftDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftDrive2.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightDrive2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addLine("Initialization Complete");
         telemetry.update();
 
+        idle();
         waitForStart();
         telemetry.clearAll();
         runtime.reset();
@@ -67,5 +68,7 @@ public abstract class ATeamTeleOp extends LinearOpMode {
             telemetry.addData("Motors", "left (%.2f), right (%.2f)", gamepad1.left_stick_y, gamepad1.right_stick_y);
             telemetry.update();
         }
+        idle();
+        requestOpModeStop();
     }
 }
