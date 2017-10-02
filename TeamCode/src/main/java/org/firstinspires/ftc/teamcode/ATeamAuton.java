@@ -9,15 +9,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous (name= "Auton Alpha 1.0", group= "Autonomous")
-public abstract class ATeamAuton extends LinearOpMode {
+@Autonomous (name="Auton Alpha 1.0", group="Autonomous")
+public class ATeamAuton extends LinearOpMode {
 
 
 
     public static final double COUNTS_PER_MOTOR_REV = 1220;
     public static final double DRIVE_GEAR_REDUCTION = 1.0;
     public static final double WHEEL_DIAMETER_INCHES = 4.0;
-    public static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * 3.1415);
+    public static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
     public static final double DRIVE_SPEED = 0.5;
     public static final double TURN_SPEED = 0.5;
 
@@ -58,9 +58,8 @@ public abstract class ATeamAuton extends LinearOpMode {
 
         waitForStart();
 
-        encoderDrive(DRIVE_SPEED,  48,  48, 5.0);
-        encoderDrive(TURN_SPEED,   12, -12, 4.0);
-        encoderDrive(DRIVE_SPEED, -24, -24, 4.0);
+        encoderDrive(DRIVE_SPEED,  36,  36, 5);       //(Left Wheel Distance (IN.), Right-Wheel Distance, Timeout (Sec))
+
 
     }
 
@@ -83,11 +82,15 @@ public abstract class ATeamAuton extends LinearOpMode {
             leftDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
+            runtime.reset();
             leftDrive1.setPower(Math.abs(speed));
             rightDrive1.setPower(Math.abs(speed));
             leftDrive2.setPower(Math.abs(speed));
             rightDrive2.setPower(Math.abs(speed));
 
+            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftDrive1.isBusy()) && (leftDrive2.isBusy()) && (rightDrive1.isBusy()) && (rightDrive2.isBusy())) {
+            }
+          }
         }
     }
-}
+
