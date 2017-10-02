@@ -11,8 +11,8 @@ import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="TeleOp Alpha 1.0", group="TeleOp")
-public abstract class ATeamTeleOp extends LinearOpMode {
+@TeleOp(name="TeleOp Alpha 1.0", group="Linear Opmode")
+public class ATeamTeleOp extends LinearOpMode {
     
     public ElapsedTime runtime = new ElapsedTime();
     public DcMotor leftDrive1 = null;
@@ -21,24 +21,23 @@ public abstract class ATeamTeleOp extends LinearOpMode {
     public DcMotor rightDrive2 = null;
 
     @Override
-    public void runOpMode() throws InterruptedException {
+    public void runOpMode() { // this is still not working
         telemetry.addLine("Initializing");
         telemetry.update();
 
-        leftDrive1 = hardwareMap.dcMotor.get("leftDrive1");
-        rightDrive1 = hardwareMap.dcMotor.get("rightDrive1");
-        leftDrive2 = hardwareMap.dcMotor.get("leftDrive2");
-        rightDrive2 = hardwareMap.dcMotor.get("rightDrive2");
+        leftDrive1 = hardwareMap.get(DcMotor.class, "leftDrive1");
+        rightDrive1 = hardwareMap.get(DcMotor.class, "rightDrive1");
+        leftDrive2 = hardwareMap.get(DcMotor.class, "leftDrive2");
+        rightDrive2 = hardwareMap.get(DcMotor.class, "rightDrive2");
 
-        leftDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftDrive1.setDirection(DcMotorSimple.Direction.REVERSE);
         rightDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
-        leftDrive2.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftDrive2.setDirection(DcMotorSimple.Direction.FORWARD);
         rightDrive2.setDirection(DcMotorSimple.Direction.REVERSE);
 
         telemetry.addLine("Initialization Complete");
         telemetry.update();
 
-        idle();
         waitForStart();
         telemetry.clearAll();
         runtime.reset();
