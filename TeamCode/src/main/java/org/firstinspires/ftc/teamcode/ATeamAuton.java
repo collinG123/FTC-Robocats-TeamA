@@ -12,10 +12,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous (name="Auton Alpha 1.0", group="Autonomous")
 public class ATeamAuton extends LinearOpMode {
 
-    public static final double COUNTS_PER_MOTOR_REV = 1220;
+    public static final double COUNTS_PER_MOTOR_REV1 = 560;
+    public static final double COUNTS_PER_MOTOR_REV2 = 1220;
     public static final double DRIVE_GEAR_REDUCTION = 1.0;
     public static final double WHEEL_DIAMETER_INCHES = 4.0;
-    public static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
+    public static final double COUNTS_PER_INCH1 = (COUNTS_PER_MOTOR_REV1 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
+    public static final double COUNTS_PER_INCH2 = (COUNTS_PER_MOTOR_REV2 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
     public static final double DRIVE_SPEED = 0.5;
     public static final double TURN_SPEED = 0.5;
 
@@ -63,21 +65,21 @@ public class ATeamAuton extends LinearOpMode {
 
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
 
-        int newLeft1Target;
-        int newRight1Target;
-        int newLeft2Target;
-        int newRight2Target;
+        int newLeftTarget1;
+        int newRightTarget1;
+        int newLeftTarget2;
+        int newRightTarget2;
 
         if (opModeIsActive()) {
 
-            newLeft1Target = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRight1Target = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            newLeft2Target = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
-            newRight2Target = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
-            leftDrive1.setTargetPosition(newLeft1Target);
-            rightDrive1.setTargetPosition(newRight1Target);
-            leftDrive2.setTargetPosition(newLeft2Target);
-            rightDrive2.setTargetPosition(newRight2Target);
+            newLeftTarget1 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH1);
+            newRightTarget1 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH1);
+            newLeftTarget2 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH2);
+            newRightTarget2 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH2);
+            leftDrive1.setTargetPosition(newLeftTarget1);
+            rightDrive1.setTargetPosition(newRightTarget1);
+            leftDrive2.setTargetPosition(newLeftTarget2);
+            rightDrive2.setTargetPosition(newRightTarget2);
 
             leftDrive1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightDrive1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
@@ -90,9 +92,24 @@ public class ATeamAuton extends LinearOpMode {
             leftDrive2.setPower(Math.abs(speed));
             rightDrive2.setPower(Math.abs(speed));
 
-            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftDrive1.isBusy()) && (leftDrive2.isBusy()) && (rightDrive1.isBusy()) && (rightDrive2.isBusy())) {
+            while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftDrive1.isBusy() && rightDrive1.isBusy()) && (leftDrive2.isBusy() && rightDrive2.isBusy())) {
+
+                // Display it for the driver.
+                telemetry.addData("Path1",  "Running to %7d :%7d : %7d :%7d", newLeftTarget1,  newRightTarget1, newLeftTarget2, newRightTarget2);
+                telemetry.addData("Path2",  "Running at %7d :%7d : %7d :%7d", leftDrive1.getCurrentPosition(), rightDrive1.getCurrentPosition(), leftDrive2.getCurrentPosition(), rightDrive2.getCurrentPosition());
+                telemetry.update();
             }
-          }
+
+            leftDrive1.setPower(0);
+            leftDrive2.setPower(0);
+            rightDrive1.setPower(0);
+            rightDrive2.setPower(0);
+
+            leftDrive1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftDrive2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightDrive1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightDrive2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         }
     }
-
+}
