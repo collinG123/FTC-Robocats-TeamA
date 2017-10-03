@@ -30,10 +30,10 @@ public class ATeamTeleOp extends LinearOpMode {
         leftDrive2 = hardwareMap.get(DcMotor.class, "leftDrive2");
         rightDrive2 = hardwareMap.get(DcMotor.class, "rightDrive2");
 
-        leftDrive1.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
         rightDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
         leftDrive2.setDirection(DcMotorSimple.Direction.FORWARD);
-        rightDrive2.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightDrive2.setDirection(DcMotorSimple.Direction.FORWARD);
 
         telemetry.addLine("Initialization Complete");
         telemetry.update();

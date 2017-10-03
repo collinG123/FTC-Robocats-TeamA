@@ -37,8 +37,8 @@ public class ATeamAuton extends LinearOpMode {
 
         leftDrive1.setDirection(DcMotor.Direction.REVERSE);
         rightDrive1.setDirection(DcMotor.Direction.FORWARD);
-        leftDrive2.setDirection(DcMotor.Direction.FORWARD);
-        rightDrive2.setDirection(DcMotor.Direction.REVERSE);
+        leftDrive2.setDirection(DcMotor.Direction.REVERSE);
+        rightDrive2.setDirection(DcMotor.Direction.FORWARD);
 
         leftDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -87,10 +87,10 @@ public class ATeamAuton extends LinearOpMode {
             rightDrive2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             runtime.reset();
-            leftDrive1.setPower(Math.abs(speed));
-            rightDrive1.setPower(Math.abs(speed));
-            leftDrive2.setPower(Math.abs(speed));
-            rightDrive2.setPower(Math.abs(speed));
+            leftDrive1.setPower(speed);
+            rightDrive1.setPower(speed);
+            leftDrive2.setPower(speed);
+            rightDrive2.setPower(speed);
 
             while (opModeIsActive() && (runtime.seconds() < timeoutS) && (leftDrive1.isBusy() && rightDrive1.isBusy()) && (leftDrive2.isBusy() && rightDrive2.isBusy())) {
 
