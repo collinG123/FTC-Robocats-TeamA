@@ -12,15 +12,15 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous (name="Auton Alpha 1.0", group="Autonomous")
 public class ATeamAuton extends LinearOpMode {
 
-    public static final double COUNTS_PER_MOTOR_REV1 = 560;
-    public static final double COUNTS_PER_MOTOR_REV2 = 1220;
+
+    public static final double COUNTS_PER_MOTOR_REV1 = 1220;
+    //public static final double COUNTS_PER_MOTOR_REV2 = 560;
     public static final double DRIVE_GEAR_REDUCTION = 1.0;
     public static final double WHEEL_DIAMETER_INCHES = 4.0;
     public static final double COUNTS_PER_INCH1 = (COUNTS_PER_MOTOR_REV1 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
-    public static final double COUNTS_PER_INCH2 = (COUNTS_PER_MOTOR_REV2 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
+    //public static final double COUNTS_PER_INCH2 = (COUNTS_PER_MOTOR_REV1 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
     public static final double DRIVE_SPEED = 0.5;
     public static final double TURN_SPEED = 0.5;
-
     public ElapsedTime runtime = new ElapsedTime();
     public DcMotor leftDrive1 = null;
     public DcMotor leftDrive2 = null;
@@ -37,8 +37,8 @@ public class ATeamAuton extends LinearOpMode {
 
         leftDrive1.setDirection(DcMotor.Direction.REVERSE);
         rightDrive1.setDirection(DcMotor.Direction.FORWARD);
-        leftDrive2.setDirection(DcMotor.Direction.REVERSE);
-        rightDrive2.setDirection(DcMotor.Direction.FORWARD);
+        leftDrive2.setDirection(DcMotor.Direction.FORWARD);
+        rightDrive2.setDirection(DcMotor.Direction.REVERSE);
 
         leftDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rightDrive1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -60,7 +60,6 @@ public class ATeamAuton extends LinearOpMode {
 
         encoderDrive(DRIVE_SPEED, 24, 24,3);       //(Left Wheel Distance (IN.), Right-Wheel Distance, Timeout (Sec))
         encoderDrive(DRIVE_SPEED, 24, -24, 3);
-
     }
 
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
@@ -74,8 +73,8 @@ public class ATeamAuton extends LinearOpMode {
 
             newLeftTarget1 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH1);
             newRightTarget1 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH1);
-            newLeftTarget2 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH2);
-            newRightTarget2 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH2);
+            newLeftTarget2 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH1);
+            newRightTarget2 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH1);
             leftDrive1.setTargetPosition(newLeftTarget1);
             rightDrive1.setTargetPosition(newRightTarget1);
             leftDrive2.setTargetPosition(newLeftTarget2);
@@ -111,5 +110,8 @@ public class ATeamAuton extends LinearOpMode {
             rightDrive2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         }
+    }
+    public void jewelFinder() {
+
     }
 }
