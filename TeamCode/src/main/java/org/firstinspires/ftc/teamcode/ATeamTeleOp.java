@@ -47,10 +47,10 @@ public class ATeamTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            rightDrive1.setPower(-gamepad1.right_stick_y);
-            rightDrive2.setPower(-gamepad1.right_stick_y);
-            leftDrive1.setPower(-gamepad1.left_stick_y);
-            leftDrive2.setPower(-gamepad1.left_stick_y);
+            rightDrive1.setPower(-gamepad1.right_stick_y * 1.1);
+            rightDrive2.setPower(-gamepad1.right_stick_y * 1.1);
+            leftDrive1.setPower(-gamepad1.left_stick_y * 1.1);
+            leftDrive2.setPower(-gamepad1.left_stick_y* 1.1);
 
             /*
             Close grippers onto glyph.

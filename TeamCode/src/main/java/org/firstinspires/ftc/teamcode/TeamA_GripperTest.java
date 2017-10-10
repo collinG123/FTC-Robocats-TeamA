@@ -13,7 +13,7 @@ import com.qualcomm.robotcore.util.Range;
 public class TeamA_GripperTest extends LinearOpMode {
 
     public ElapsedTime runtime = new ElapsedTime();
-    public DcMotor liftMotor = null;            //lift motor
+    //public DcMotor liftMotor = null;            //lift motor
     public Servo gripServo1 = null;             //left servo
     public Servo gripServo2 = null;             //right servo
     public double servoDegrees;
@@ -24,20 +24,22 @@ public class TeamA_GripperTest extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
 
-        liftMotor = hardwareMap.get(DcMotor.class, "liftMotor");
+        gripServo1 = hardwareMap.get(Servo.class, "gripServo1");
+        gripServo2 = hardwareMap.get(Servo.class, "gripServo2");
+       //liftMotor = hardwareMap.get(DcMotor.class, "liftMotor");
 
-        liftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+        //liftMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         waitForStart();
         runtime.reset();
 
         while (opModeIsActive()) {
-            while (gamepad1.x) {
+            /*while (gamepad1.x) {
                 liftMotor.setPower(0.5);
             }
             while (gamepad1.y) {
                 liftMotor.setPower(-0.5);
-            }
+            }*/
             if (gamepad1.a) { //opens gripper
                 servoDegrees = 160;
                 gripServo1.setPosition(servoEquation);
