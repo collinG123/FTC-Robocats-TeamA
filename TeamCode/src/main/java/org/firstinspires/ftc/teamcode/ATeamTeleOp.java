@@ -15,25 +15,25 @@ import com.qualcomm.robotcore.util.Range;
 public class ATeamTeleOp extends LinearOpMode {
     
     public ElapsedTime runtime = new ElapsedTime();
-    public DcMotor leftDrive1 = null;
-    public DcMotor leftDrive2 = null;
-    public DcMotor rightDrive1 = null;
-    public DcMotor rightDrive2 = null;
+    public DcMotor motorFrontLeft = null;
+    public DcMotor motorBackLeft = null;
+    public DcMotor motorFrontRight = null;
+    public DcMotor motorBackRight = null;
 
     @Override
     public void runOpMode() { // this is still not working
         telemetry.addLine("Initializing");
         telemetry.update();
 
-        leftDrive1 = hardwareMap.get(DcMotor.class, "leftDrive1");
-        rightDrive1 = hardwareMap.get(DcMotor.class, "rightDrive1");
-        leftDrive2 = hardwareMap.get(DcMotor.class, "leftDrive2");
-        rightDrive2 = hardwareMap.get(DcMotor.class, "rightDrive2");
+        motorFrontLeft = hardwareMap.get(DcMotor.class, "leftDrive1");
+        motorFrontRight = hardwareMap.get(DcMotor.class, "rightDrive1");
+        motorBackLeft = hardwareMap.get(DcMotor.class, "leftDrive2");
+        motorBackRight = hardwareMap.get(DcMotor.class, "rightDrive2");
 
-        leftDrive1.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightDrive1.setDirection(DcMotorSimple.Direction.FORWARD);
-        leftDrive2.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightDrive2.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorFrontRight.setDirection(DcMotorSimple.Direction.FORWARD);
+        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackRight.setDirection(DcMotorSimple.Direction.FORWARD);
 
         telemetry.addLine("Initialization Complete");
         telemetry.update();
@@ -47,10 +47,10 @@ public class ATeamTeleOp extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            rightDrive1.setPower(-gamepad1.right_stick_y * 1.1);
-            rightDrive2.setPower(-gamepad1.right_stick_y * 1.1);
-            leftDrive1.setPower(-gamepad1.left_stick_y * 1.1);
-            leftDrive2.setPower(-gamepad1.left_stick_y* 1.1);
+            motorFrontRight.setPower(-gamepad1.right_stick_y * 1.1);
+            motorBackRight.setPower(-gamepad1.right_stick_y * 1.1);
+            motorFrontLeft.setPower(-gamepad1.left_stick_y * 1.1);
+            motorBackLeft.setPower(-gamepad1.left_stick_y* 1.1);
 
             /*
             Close grippers onto glyph.
