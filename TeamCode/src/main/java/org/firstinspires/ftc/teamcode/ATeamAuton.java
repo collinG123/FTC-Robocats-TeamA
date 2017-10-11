@@ -17,7 +17,7 @@ public class ATeamAuton extends LinearOpMode {
     //public static final double COUNTS_PER_MOTOR_REV2 = 560;
     public static final double DRIVE_GEAR_REDUCTION = 1.0;
     public static final double WHEEL_DIAMETER_INCHES = 4.0;
-    public static final double COUNTS_PER_INCH1 = (COUNTS_PER_MOTOR_REV1 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
+    public static final double COUNTS_PER_INCH = (COUNTS_PER_MOTOR_REV1 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
     //public static final double COUNTS_PER_INCH2 = (COUNTS_PER_MOTOR_REV1 * DRIVE_GEAR_REDUCTION) / (WHEEL_DIAMETER_INCHES * Math.PI);
     public static final double DRIVE_SPEED = 0.5;
     public static final double TURN_SPEED = 0.5;
@@ -26,6 +26,9 @@ public class ATeamAuton extends LinearOpMode {
     public DcMotor leftDrive2 = null;
     public DcMotor rightDrive1 = null;
     public DcMotor rightDrive2 = null;
+
+    public int error = 0;
+    public int kp = 1;
 
     @Override
     public void runOpMode() {
@@ -71,10 +74,10 @@ public class ATeamAuton extends LinearOpMode {
 
         if (opModeIsActive()) {
 
-            newLeftTarget1 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH1);
-            newRightTarget1 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH1);
-            newLeftTarget2 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH1);
-            newRightTarget2 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH1);
+            newLeftTarget1 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newRightTarget1 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
+            newLeftTarget2 = leftDrive1.getCurrentPosition() + (int) (leftInches * COUNTS_PER_INCH);
+            newRightTarget2 = rightDrive2.getCurrentPosition() + (int) (rightInches * COUNTS_PER_INCH);
             leftDrive1.setTargetPosition(newLeftTarget1);
             rightDrive1.setTargetPosition(newRightTarget1);
             leftDrive2.setTargetPosition(newLeftTarget2);

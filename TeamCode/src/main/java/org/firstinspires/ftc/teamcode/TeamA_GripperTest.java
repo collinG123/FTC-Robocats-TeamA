@@ -16,8 +16,10 @@ public class TeamA_GripperTest extends LinearOpMode {
     //public DcMotor liftMotor = null;            //lift motor
     public Servo gripServo1 = null;             //left servo
     public Servo gripServo2 = null;             //right servo
-    public double servoDegrees;
-    public double servoEquation = (1/255 * servoDegrees);
+    //public int servoDegreesR;
+    //public int servoDegreesL;
+    //public double servoEquationL = (1/255 * servoDegreesL);
+    //public double servoEquationR = (1/255 * servoDegreesR);
 
     @Override
     public void runOpMode() {
@@ -40,19 +42,19 @@ public class TeamA_GripperTest extends LinearOpMode {
             while (gamepad1.y) {
                 liftMotor.setPower(-0.5);
             }*/
-            if (gamepad1.a) { //opens gripper
-                servoDegrees = 160;
-                gripServo1.setPosition(servoEquation);
-
-                servoDegrees = 95;
-                gripServo2.setPosition(servoEquation);
-            }
             if (gamepad1.b) { //closes gripper
-                servoDegrees = 180;
-                gripServo1.setPosition(servoEquation);
+                //servoDegreesL = 160;
+                //servoDegreesR = 95;
 
-                servoDegrees = 0;
-                gripServo2.setPosition(servoEquation);
+                gripServo1.setPosition(.62);
+                gripServo2.setPosition(.37);
+            }
+            if (gamepad1.a) { //opens gripper
+                //servoDegreesR = 180;
+                //servoDegreesL = 0;
+
+                gripServo1.setPosition(.15);
+                gripServo2.setPosition(.825);
             }
         }
     }
