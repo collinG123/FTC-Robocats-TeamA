@@ -62,7 +62,6 @@ public class ATeamAuton extends LinearOpMode {
         waitForStart();
 
         encoderDrive(DRIVE_SPEED, 24, 24,3);       //(Left Wheel Distance (IN.), Right-Wheel Distance, Timeout (Sec))
-        encoderDrive(DRIVE_SPEED, 24, -24, 3);
     }
 
     public void encoderDrive(double speed, double leftInches, double rightInches, double timeoutS) {
